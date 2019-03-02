@@ -1,6 +1,6 @@
 # timezonesync
 
-**** Documentation word document "Timezone Sync Service.docx" located in the Timezone Sync Service Setup folder ****
+**** For documentation see word doc: TimezoneSyncServiceSetup/Timezone Sync Service.docx ****
 
 •	Originally written in visual studio 2010.
 •	The main project can be opened in VS2017 but not the installer project
