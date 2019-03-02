@@ -1,0 +1,33 @@
+c:
+cd \
+mkdir TEMP
+cd TEMP
+mkdir TimezoneSync
+cd TimezoneSync			
+
+Echo. >>timezonesync-install-silent-cmd.log
+echo.---------------------------------- >>timezonesync-install-silent-cmd.log
+echo %date% %time% >>timezonesync-install-silent-cmd.log
+echo.---------------------------------- >>timezonesync-install-silent-cmd.log
+Echo. >>timezonesync-install-silent-cmd.log
+Echo Removing Timezone Sync Service version 1.0.2 ... >>timezonesync-install-silent-cmd.log
+
+xcopy \\sscships\netlogon\timezone\install\ver1.0.2\TimezoneSyncSetup.msi . /E /C /R /Y >>timezonesync-install-silent-cmd.log
+msiexec /x timezonesyncsetup.msi /quiet /log timezonesync-version1.0.2-uninstall.log
+del timezonesyncsetup.msi
+Echo done. >>timezonesync-install-silent-cmd.log
+
+Echo. >>timezonesync-install-silent-cmd.log
+echo.---------------------------------- >>timezonesync-install-silent-cmd.log
+echo %date% %time% >>timezonesync-install-silent-cmd.log
+echo.---------------------------------- >>timezonesync-install-silent-cmd.log
+Echo. >>timezonesync-install-silent-cmd.log
+Echo Installing Timezone Sync Service version 2.0.0 ... >>timezonesync-install-silent-cmd.log
+xcopy \\sscships\netlogon\timezone\install\ver2.0.0\TimezoneSyncSetup.msi . /E /C /R /Y >>timezonesync-install-silent-cmd.log
+timezonesyncsetup.msi XMLPATH=\\sscships\netlogon\timezone\ss\TimezoneSchedule.xml FREQUENCYMINUTES=10 /quiet /l* timezonesync-version2.0.0-install.log 
+Echo done. >>timezonesync-install-silent-cmd.log
+
+
+del timezonesyncsetup.msi 
+
+rem pause

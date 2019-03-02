@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+
+
+**************************************************************
+**** Weekly Recurring Schedule ****
+**************************************************************
+- Use for repeating 7-day itineraries
+- Create entries for each day of week & the hour of the time change, plus the timezone to change to
+- set the global parameter <IsRecurring>true</IsRecurring>
+
+      PARAMETERS:
+      ***********
+
+          <day_of_week>
+          1 - Monday
+          2 - Tuesday
+          3 - Wednesday
+          4 - Thursday
+          5 - Friday
+          6 - Saturday
+          7 - Sunday
+
+          <start_time>
+          - Format is in 24h format of HH:MM, so 6:00PM is entered as 18:00
+
+          <tzStandardName>
+          - The timezone to change to at this appointed time. Standard names are found in the registry under
+          HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\<selected time zone>\Std
+
+
+      EXAMPLE (every Tuesday at 0200 hours):
+      **************************************
+
+        <entry>
+            <day_of_week>2</day_of_week>
+            <start_time>02:00</start_time>
+            <tzStandardName>Pacific Standard Time</tzStandardName>
+        </entry>
+
+
+**************************************************************
+**** Indefinite Schedule  ****
+**************************************************************
+- set the global parameter <IsRecurring>false</IsRecurring>
+- enter as many entries into the future as required, using the datetime of the next change and the timezone to change to
+- service will read all entry nodes of the XML file and sort by date/time ASC.
+- service will then determine which timezone the local system should be on, and perform a compare/update as necessary.
+
+        PARAMETERS:
+        ***********
+
+            <start_datetime>
+            - Format is YYYY-MM-DD HH:MM, with clock in 24-hour military time
+            - So August 1, 2012 at 6:00pm would be as follows: <start_datetime>2012-08-01 18:00</start_datetime>
+
+            <tzStandardName>
+            - The timezone to change to at this appointed time. Standard names are found in the registry under
+            HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\<selected time zone>\Std
+
+
+        EXAMPLE (single timezone change on August 1, 2012 at 0200 hours shiptime):
+        *******
+
+          <entry>
+              <IsRecurring>false</IsRecurring>
+              <start_datetime>2012-08-01 02:00</start_datetime>
+              <tzStandardName>Pacific Standard Time</tzStandardName>
+          </entry>
+
+
+**************************************************************
+GLOBAL PARAMETERS
+**************************************************************
+
+    <IsRecurring>
+    - Set to 'false' for indefinite entries
+    - Set to 'true' for repeating weekly (7-day only) itineraries
+
+    <new_XMLPath>
+    <new_FrequencyMinutes>
+    - The service will check these fields and if present will update the registry settings on the local machine to the specified entry.
+    - The settings will go into effect the next time the service is started.
+    - Leave empty if no change is required
+
+	    XMLPath:
+	    - UNC path to xml schedule file. 
+
+	    FrequencyMinutes:
+	    - enter the number of minutes that the service should check the timezone on the local system.
+	    - format is 1 or 2-digit, simple number for 1-10 usually. The service will convert to milliseconds internally.
+      
+      
+    <set_VerboseLogging>
+    - set to 1 or 0 to enable or disable verbose logging on the client. Verbose Logging enabled will produce log entries with each check of the service (default = every 10 minutes)
+
+-->
+
+
+<Schedule>
+
+  <global_params>
+    <IsRecurring>false</IsRecurring>
+    <new_XMLPath></new_XMLPath>
+    <new_FrequencyMinutes></new_FrequencyMinutes>
+    <set_VerboseLogging></set_VerboseLogging>
+  </global_params>
+
+
+  <entry>
+    <start_datetime>2012-08-08 02:00</start_datetime>
+    <tzStandardName>Pacific Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-08-11 02:00</start_datetime>
+    <tzStandardName>Alaskan Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-08-22 02:00</start_datetime>
+    <tzStandardName>Pacific Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-08-25 02:00</start_datetime>
+    <tzStandardName>Alaskan Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-09-05 02:00</start_datetime>
+    <tzStandardName>Pacific Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-09-08 02:00</start_datetime>
+    <tzStandardName>Alaskan Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-09-17 02:00</start_datetime>
+    <tzStandardName>New Zealand Standard Time</tzStandardName>
+  </entry>
+
+  <entry>
+    <start_datetime>2012-09-21 02:00</start_datetime>
+    <tzStandardName>Tokyo Standard Time</tzStandardName>
+  </entry>
+
+
+  <entry>
+    <start_datetime>2012-09-29 02:00</start_datetime>
+    <tzStandardName>China Standard Time</tzStandardName>
+  </entry>
+
+</Schedule>
